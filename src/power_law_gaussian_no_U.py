@@ -139,8 +139,11 @@ def run_emcee(data, ndim=3, nwalkers=32, nburn=100, nrun=100):
     # Define sampler
     sampler = emcee.EnsembleSampler(nwalkers, ndim, ln_posterior, args=[data])
 
+    print "Running burn-in..."
     # Run burn-in
     pos,prob,state = sampler.run_mcmc(p0, N=nburn)
+
+    print "Burn-in finished. Running converged sampler..."
 
     # Full run
     sampler.reset()
